@@ -1,0 +1,5 @@
+# Ignore common editor metadata
+.DS_Store
+.idea/
+.vscode/
+*.iml
