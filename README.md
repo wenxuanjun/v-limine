@@ -10,8 +10,6 @@ Via `vpm`:
 v install wenxuanjun.limine
 ```
 
-**Note**: You need to add `-enable-global` to your V compiler flags to use this library.
-
 ## Resources
 
 - [Limine Boot Protocol Specification](https://github.com/limine-bootloader/limine/blob/trunk/PROTOCOL.md)

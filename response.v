@@ -7,6 +7,12 @@ pub:
 	version  charptr
 }
 
+pub struct ExecutableCmdlineResponse {
+pub:
+	revision u64
+	cmdline  charptr
+}
+
 pub struct FirmwareTypeResponse {
 pub:
 	revision      u64
@@ -58,10 +64,10 @@ pub:
 	revision u64
 }
 
-pub struct KernelFileResponse {
+pub struct ExecutableFileResponse {
 pub:
-	revision    u64
-	kernel_file &File
+	revision u64
+	executable_file &File
 }
 
 pub struct ModuleResponse {
@@ -80,14 +86,14 @@ pub:
 pub struct SmbiosResponse {
 pub:
 	revision u64
-	entry_32 voidptr
-	entry_64 voidptr
+	entry_32 u64
+	entry_64 u64
 }
 
 pub struct EfiSystemTableResponse {
 pub:
 	revision u64
-	address  voidptr
+	address  u64
 }
 
 pub struct EfiMemmapResponse {
@@ -99,13 +105,13 @@ pub:
 	desc_version u64
 }
 
-pub struct BootTimeResponse {
+pub struct DateAtBootResponse {
 pub:
-	revision  u64
-	boot_time i64
+	revision u64
+	timestamp i64
 }
 
-pub struct KernelAddressResponse {
+pub struct ExecutableAddressResponse {
 pub:
 	revision      u64
 	physical_base u64
@@ -122,4 +128,12 @@ pub struct RiscvBspHartidResponse {
 pub:
 	revision   u64
 	bsp_hartid u64
+}
+
+pub struct BootloaderPerformanceResponse {
+pub:
+	revision   u64
+	reset_usec u64
+	init_usec  u64
+	exec_usec  u64
 }

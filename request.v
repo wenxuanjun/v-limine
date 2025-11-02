@@ -15,6 +15,18 @@ pub:
 	response &BootloaderInfoResponse
 }
 
+pub struct ExecutableCmdlineRequest {
+	id [4]u64 = [
+	common_magic_1,
+	common_magic_2,
+	0x4b161536e598651e,
+	0xb390ad4a2f1f303a,
+]!
+pub:
+	revision u64
+	response &ExecutableCmdlineResponse
+}
+
 pub struct FirmwareTypeRequest {
 	id [4]u64 = [
 	common_magic_1,
@@ -116,7 +128,7 @@ pub:
 	entry    fn () = unsafe { nil }
 }
 
-pub struct KernelFileRequest {
+pub struct ExecutableFileRequest {
 	id [4]u64 = [
 	common_magic_1,
 	common_magic_2,
@@ -125,7 +137,7 @@ pub struct KernelFileRequest {
 ]!
 pub:
 	revision u64
-	response &KernelFileResponse
+	response &ExecutableFileResponse
 }
 
 pub struct ModuleRequest {
@@ -191,7 +203,7 @@ pub:
 	response &EfiMemmapResponse
 }
 
-pub struct BootTimeRequest {
+pub struct DateAtBootRequest {
 	id [4]u64 = [
 	common_magic_1,
 	common_magic_2,
@@ -200,10 +212,10 @@ pub struct BootTimeRequest {
 ]!
 pub:
 	revision u64
-	response &BootTimeResponse
+	response &DateAtBootResponse
 }
 
-pub struct KernelAddressRequest {
+pub struct ExecutableAddressRequest {
 	id [4]u64 = [
 	common_magic_1,
 	common_magic_2,
@@ -212,7 +224,7 @@ pub struct KernelAddressRequest {
 ]!
 pub:
 	revision u64
-	response &KernelAddressResponse
+	response &ExecutableAddressResponse
 }
 
 pub struct DtbRequest {
@@ -237,4 +249,16 @@ pub struct RiscvBspHartidRequest {
 pub:
 	revision u64
 	response &RiscvBspHartidResponse
+}
+
+pub struct BootloaderPerformanceRequest {
+	id [4]u64 = [
+	common_magic_1,
+	common_magic_2,
+	0x6b50ad9bf36d13ad,
+	0xdc4c7e88fc759e17,
+]!
+pub:
+	revision u64
+	response &BootloaderPerformanceResponse
 }

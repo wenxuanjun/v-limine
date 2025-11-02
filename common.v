@@ -1,3 +1,4 @@
+@[has_globals]
 module limine
 
 @[_linker_section: '.requests_start_marker']
@@ -46,7 +47,7 @@ pub:
 	address         voidptr
 	size            u64
 	path            charptr
-	cmdline         charptr
+	string          charptr
 	media_type      u32
 	unused          u32
 	tftp_ip         u32
@@ -94,7 +95,7 @@ pub:
 	green_mask_shift u8
 	blue_mask_size   u8
 	blue_mask_shift  u8
-	unused           u8
+	unused           [7]u8
 	edid_size        u64
 	edid             voidptr
 	// Response revision 1
@@ -120,6 +121,7 @@ pub enum MemmapEntryType as u64 {
 	bootloader_reclaimable
 	executable_and_modules
 	framebuffer
+	acpi_tables
 }
 
 pub struct MemmapEntry {
@@ -135,6 +137,6 @@ pub const internal_module_compressed = 1 << 1
 pub struct InternalModule {
 pub:
 	path    &i8
-	cmdline &i8
+	string  &i8
 	flags   u64
 }
