@@ -12,7 +12,7 @@ v install wenxuanjun.limine
 
 ## Resources
 
-- [Limine Boot Protocol Specification](https://github.com/limine-bootloader/limine/blob/trunk/PROTOCOL.md)
+- [Limine Boot Protocol Specification](https://github.com/limine-bootloader/limine-protocol/blob/trunk/PROTOCOL.md)
 
 ## Barebones
 
