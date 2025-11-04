@@ -4,10 +4,10 @@ A V library for handling Limine boot protocol structures.
 
 ## Install
 
-Via `vpm`:
+You can install the package via:
 
 ```bash
-v install wenxuanjun.limine
+v install https://github.com/wenxuanjun/v-limine
 ```
 
 ## Resources
