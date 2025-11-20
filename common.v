@@ -1,25 +1,23 @@
 @[has_globals]
 module limine
 
-@[_linker_section: '.requests_start_marker']
+@[_linker_section: '.limine_requests_start']
 @[cinit]
-__global (
-	volatile limine_requests_start_marker = [
-		u64(0xf6b8f4b39de7d1ae),
-		0xfab91a6940fcb9cf,
-		0x785c6ed015d3e316,
-		0x181e920a7852b9d9,
-	]!
-)
+@[markused]
+__global volatile limine_requests_start_marker = [
+	u64(0xf6b8f4b39de7d1ae),
+	0xfab91a6940fcb9cf,
+	0x785c6ed015d3e316,
+	0x181e920a7852b9d9,
+]!
 
-@[_linker_section: '.requests_end_marker']
+@[_linker_section: '.limine_requests_end']
 @[cinit]
-__global (
-	volatile limine_requests_end_marker = [
-		u64(0xadc0e0531bb10d03),
-		0x9572709f31764c62,
-	]!
-)
+@[markused]
+__global volatile limine_requests_end_marker = [
+	u64(0xadc0e0531bb10d03),
+	0x9572709f31764c62,
+]!
 
 pub struct BaseRevision {
 	id       [2]u64 = [u64(0xf9562b2d5c95a6c8), 0x6a7b384944536bdc]!
