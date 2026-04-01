@@ -28,12 +28,13 @@ pub:
 }
 
 pub struct FirmwareTypeRequest {
-	id       [4]u64 = [
+	id [4]u64 = [
 	common_magic_1,
 	common_magic_2,
 	0x8c2f75d90bef28a8,
 	0x7045a4688eac00c3,
 ]!
+pub:
 	revision u64
 	response &FirmwareTypeResponse
 }
