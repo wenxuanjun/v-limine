@@ -3,14 +3,14 @@ module limine
 pub struct BootloaderInfoResponse {
 pub:
 	revision u64
-	name     charptr
-	version  charptr
+	name     &char
+	version  &char
 }
 
 pub struct ExecutableCmdlineResponse {
 pub:
 	revision u64
-	cmdline  charptr
+	cmdline  &char
 }
 
 pub struct FirmwareTypeResponse {
@@ -37,19 +37,55 @@ pub:
 	framebuffers      &&Framebuffer
 }
 
+pub struct FlantermFbInitParamsResponse {
+pub:
+	revision    u64
+	entry_count u64
+	entries     &&FlantermFbInitParams
+}
+
 pub struct PagingModeResponse {
 pub:
 	revision u64
 	mode     u64
 }
 
-pub struct MpResponse {
-pub:
-	revision     u64
-	flags        u32
-	bsp_lapic_id u32
-	cpu_count    u64
-	cpus         &&MpInfo
+$if amd64 || i386 {
+	pub struct MpResponse {
+	pub:
+		revision     u64
+		flags        u32
+		bsp_lapic_id u32
+		cpu_count    u64
+		cpus         &&MpInfo
+	}
+} $else $if arm64 {
+	pub struct MpResponse {
+	pub:
+		revision  u64
+		flags     u64
+		bsp_mpidr u64
+		cpu_count u64
+		cpus      &&MpInfo
+	}
+} $else $if rv64 {
+	pub struct MpResponse {
+	pub:
+		revision   u64
+		flags      u64
+		bsp_hartid u64
+		cpu_count  u64
+		cpus       &&MpInfo
+	}
+} $else $if loongarch64 {
+	pub struct MpResponse {
+	pub:
+		revision    u64
+		flags       u64
+		bsp_phys_id u64
+		cpu_count   u64
+		cpus        &&MpInfo
+	}
 }
 
 pub struct MemmapResponse {
@@ -66,7 +102,7 @@ pub:
 
 pub struct ExecutableFileResponse {
 pub:
-	revision u64
+	revision        u64
 	executable_file &File
 }
 
@@ -86,14 +122,14 @@ pub:
 pub struct SmbiosResponse {
 pub:
 	revision u64
-	entry_32 u64
-	entry_64 u64
+	entry_32 voidptr
+	entry_64 voidptr
 }
 
 pub struct EfiSystemTableResponse {
 pub:
 	revision u64
-	address  u64
+	address  voidptr
 }
 
 pub struct EfiMemmapResponse {
@@ -107,7 +143,7 @@ pub:
 
 pub struct DateAtBootResponse {
 pub:
-	revision u64
+	revision  u64
 	timestamp i64
 }
 
@@ -136,4 +172,9 @@ pub:
 	reset_usec u64
 	init_usec  u64
 	exec_usec  u64
+}
+
+pub struct KeepIommuResponse {
+pub:
+	revision u64
 }

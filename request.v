@@ -28,7 +28,7 @@ pub:
 }
 
 pub struct FirmwareTypeRequest {
-	id [4]u64 = [
+	id       [4]u64 = [
 	common_magic_1,
 	common_magic_2,
 	0x8c2f75d90bef28a8,
@@ -73,6 +73,18 @@ pub struct FramebufferRequest {
 pub:
 	revision u64
 	response &FramebufferResponse
+}
+
+pub struct FlantermFbInitParamsRequest {
+	id [4]u64 = [
+	common_magic_1,
+	common_magic_2,
+	0x3259399fe7c5f126,
+	0xe01c1c8c5db9d1a9,
+]!
+pub:
+	revision u64
+	response &FlantermFbInitParamsResponse
 }
 
 pub struct PagingModeRequest {
@@ -261,4 +273,16 @@ pub struct BootloaderPerformanceRequest {
 pub:
 	revision u64
 	response &BootloaderPerformanceResponse
+}
+
+pub struct KeepIommuRequest {
+	id [4]u64 = [
+	common_magic_1,
+	common_magic_2,
+	0x8ebaabe51f490179,
+	0x2aa86a59ffb4ab0f,
+]!
+pub:
+	revision u64
+	response &KeepIommuResponse
 }
